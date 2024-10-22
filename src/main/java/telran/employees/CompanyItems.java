@@ -38,6 +38,7 @@ public class CompanyItems
                 Item.of("Hire Employee", CompanyItems::hire_employee),
                 Item.of("Hire Wage Employee", CompanyItems::hire_wage_employee),
                 Item.of("Hire Sales Person", CompanyItems::hire_sales_person),
+                Item.of("Hire Manager", CompanyItems::hire_manager),
                 Item.of("Return to Main menu...", _ -> {}, true)
         };
 
@@ -60,7 +61,7 @@ public class CompanyItems
         return items;
     }
 
-    private static void display_employee_by_id(InputOutput io) 
+    private static void display_employee_by_id(InputOutput io)
     {
         Employee employee = company.getEmployee(io.readNumberRange(
                 "Enter Eployee ID:",
@@ -184,6 +185,23 @@ public class CompanyItems
         io.writeLine("You are entered the following Sales Person data");
         io.writeLine(sales_person);
         company.addEmployee(sales_person);
+    }
+
+    private static void hire_manager(InputOutput io)
+    {
+        Manager manager = io.readObject("Enter the Employee data in the format: \n" +
+                        "[#id]#[Salary]#[Department]#[factor]",
+                "Wrong format for Employee data", str -> {
+                    String[] tokens = str.split("#");
+                    return new Manager(
+                            Long.parseLong(tokens[0]),
+                            Integer.parseInt(tokens[1]),
+                            tokens[2],
+                            Float.parseFloat(tokens[3]));
+                });
+        io.writeLine("You are entered the following Sales Person data");
+        io.writeLine(manager);
+        company.addEmployee(manager);
     }
 
     private static Item createMenuItemWithSubmenu(String title, Item[] submenuItems) {
