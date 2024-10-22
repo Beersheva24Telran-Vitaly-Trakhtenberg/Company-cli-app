@@ -6,6 +6,7 @@ import telran.view.*;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Objects;
 
 public class CompanyItems 
 {
@@ -71,11 +72,7 @@ public class CompanyItems
                 MIN_EMPLOYEE_ID,
                 MAX_EMPLOYEE_ID
         ).longValue());
-        if (employee != null) {
-            io.writeLine(employee);
-        } else {
-            io.writeLine("No Employee in the company");
-        }
+        io.writeLine(Objects.requireNonNullElse(employee, "No Employee in the company"));
     }
 
     private static void fire_employee_by_id(InputOutput io) 
@@ -90,11 +87,7 @@ public class CompanyItems
                 MIN_EMPLOYEE_ID,
                 MAX_EMPLOYEE_ID
         ).longValue());
-        if (employee != null) {
-            io.writeLine(employee);
-        } else {
-            io.writeLine("No Employee in the company");
-        }
+        io.writeLine(Objects.requireNonNullElse(employee, "No Employee in the company"));
     }
 
     private static void department_salary_budget(InputOutput io) 
