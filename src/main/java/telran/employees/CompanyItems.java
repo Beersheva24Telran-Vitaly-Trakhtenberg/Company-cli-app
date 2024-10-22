@@ -14,7 +14,7 @@ public class CompanyItems
                 Item.of("Hire Employee", CompanyItems::hire_employee),
                 Item.of("Hire Wage Employee", CompanyItems::hire_wage_employee),
                 Item.of("Hire Sales Person", CompanyItems::hire_sales_person),
-                Item.of("Return to Main menu", io -> new Menu("Company's Employees Management application", getItems(company)).perform(io))
+                Item.of("Return to Main menu...", _ -> {}, true)
         };
 
         Item[] displaySubmenuItems = {
@@ -22,7 +22,7 @@ public class CompanyItems
                 Item.of("Department Salary Budget", CompanyItems::department_salary_budget),
                 Item.of("List of Departments", CompanyItems::departments_list),
                 Item.of("Display Managers with Most Factor", CompanyItems::display_managers_most_factors),
-                Item.of("Return to Main menu", io -> new Menu("Company's Employees Management application", getItems(company)).perform(io))
+                Item.of("Return to Main menu...", _ -> {}, true)
         };
 
         Item[] items = {
@@ -90,16 +90,10 @@ public class CompanyItems
         throw new UnsupportedOperationException("Method CompanyItems.hire_sales_person() not implemented yet");
     }
 
-    private static Item createMenuItemWithSubmenu(String item_title, Item[] submenu_items)
-    {
-        return Item.of(item_title, io -> {
-            Menu submenu = new Menu(item_title, submenu_items);
+    private static Item createMenuItemWithSubmenu(String title, Item[] submenuItems) {
+        return Item.of(title, io -> {
+            Menu submenu = new Menu(title, submenuItems);
             submenu.perform(io);
-            for (Item item : submenu_items) {
-                if (item.isExit()) {
-                    return;
-                }
-            }
         });
     }
 }
