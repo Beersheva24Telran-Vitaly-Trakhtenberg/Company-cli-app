@@ -95,6 +95,11 @@ public class CompanyItems
         return Item.of(item_title, io -> {
             Menu submenu = new Menu(item_title, submenu_items);
             submenu.perform(io);
+            for (Item item : submenu_items) {
+                if (item.isExit()) {
+                    return;
+                }
+            }
         });
     }
 }
