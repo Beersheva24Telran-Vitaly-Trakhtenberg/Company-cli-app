@@ -1,0 +1,3 @@
+{"basicSalary":12000,"className":"telran.employees.Employee","id":120000,"department":"QA"}
+{"hours":13,"basicSalary":13000,"className":"telran.employees.WageEmployee","id":130000,"department":"Management","wage":13}
+{"hours":25,"basicSalary":15000,"className":"telran.employees.SalesPerson","id":140000,"department":"Audit","percent":17,"sales":55,"wage":15}
