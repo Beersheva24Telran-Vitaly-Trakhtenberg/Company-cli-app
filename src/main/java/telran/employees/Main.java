@@ -8,8 +8,13 @@ public class Main
     public static void main(String[] args)
     {
         Company company = new CompanyImpl();
-        if (company instanceof Persistable persistable) {
-            persistable.restoreFromFile("employees.data");
+        if (company instanceof Persistable persistable_company) {
+            try {
+                ((CompanyImpl) company).restoreFromFile("employees.data");
+            } catch (RuntimeException e) {
+                InputOutput io = new StandardInputOutput();
+                io.writeLine(String.format("Error detected \n%s", e.getMessage()));
+            }
         }
         Item[] items = CompanyItems.getItems(company);
         Menu menu = new Menu("Company's Employees Management application", items);
