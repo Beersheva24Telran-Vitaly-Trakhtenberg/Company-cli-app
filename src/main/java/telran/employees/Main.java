@@ -13,7 +13,7 @@ public class Main
                 ((CompanyImpl) company).restoreFromFile("employees.data");
             } catch (RuntimeException e) {
                 InputOutput io = new StandardInputOutput();
-                io.writeLine(String.format("Error detected \n%s", e.getMessage()));
+                io.writeLine(String.format("RuntimeError performed \n%s\n%s", e.getMessage(), e.toString()));
             }
         }
         Item[] items = CompanyItems.getItems(company);
